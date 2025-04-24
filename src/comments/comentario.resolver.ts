@@ -26,4 +26,19 @@ export class ComentarioResolver {
             },
         });
     }
+
+    @Mutation(() => Comentario)
+    actualizarComentario(
+        @Args('id', { type: () => Int }) id: number,
+        @Args('contenido') contenido: string,
+    ) {
+        return this.service.update(id, contenido);
+    }
+
+    @Mutation(() => Boolean)
+    async eliminarComentario(
+        @Args('id', { type: () => Int }) id: number,
+    ): Promise<boolean> {
+        return this.service.remove(id);
+    }
 }

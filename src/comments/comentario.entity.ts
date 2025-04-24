@@ -14,5 +14,6 @@ export class Comentario {
   contenido: string;
 
   @ManyToOne(() => Usuario, usuario => usuario.comentarios)
+  @Field(() => Usuario)
   usuario: Usuario;
 }
