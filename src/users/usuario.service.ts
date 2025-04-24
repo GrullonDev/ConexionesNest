@@ -27,4 +27,10 @@ export class UsuarioService {
     usuario.imagenUrl = imagenUrl;
     return this.repo.save(usuario);
   }
+
+  async findById(id: number): Promise<Usuario> {
+    const usuario = await this.repo.findOneBy({ id });
+    if (!usuario) throw new Error('Usuario no encontrado');
+    return usuario;
+  }
 }
