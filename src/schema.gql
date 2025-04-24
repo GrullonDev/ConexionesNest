@@ -5,6 +5,7 @@
 type Comentario {
   id: Int!
   contenido: String!
+  usuario: Usuario!
 }
 
 type Usuario {
@@ -22,7 +23,11 @@ type Query {
 type Mutation {
   crearUsuario(nombre: String!, email: String!): Usuario!
   subirImagenUsuario(usuarioId: Int!, file: Upload!): Usuario!
+  actualizarImagenUsuario(usuarioId: Int!, file: Upload!): Usuario!
+  eliminarImagenUsuario(usuarioId: Int!): Usuario!
   crearComentario(contenido: String!, usuarioId: Int!): Comentario!
+  actualizarComentario(id: Int!, contenido: String!): Comentario!
+  eliminarComentario(id: Int!): Boolean!
 }
 
 """The `Upload` scalar type represents a file upload."""
