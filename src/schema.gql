@@ -1,0 +1,29 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Comentario {
+  id: Int!
+  contenido: String!
+}
+
+type Usuario {
+  id: Int!
+  nombre: String!
+  email: String!
+  imagenUrl: String
+}
+
+type Query {
+  usuarios: [Usuario!]!
+  comentarios: [Comentario!]!
+}
+
+type Mutation {
+  crearUsuario(nombre: String!, email: String!): Usuario!
+  subirImagenUsuario(usuarioId: Int!, file: Upload!): Usuario!
+  crearComentario(contenido: String!, usuarioId: Int!): Comentario!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
