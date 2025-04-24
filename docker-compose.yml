@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_conexiones
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: conexiones_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: conexiones_nest_app
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: conexiones_db
+    volumes:
+      - .:/app
+    command: yarn start:dev
+
+volumes:
+  pgdata:
